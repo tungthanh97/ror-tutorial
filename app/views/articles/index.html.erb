@@ -21,7 +21,7 @@ Articles listing page
     <td><%= article.description %></td>
     <td><%= article.user.name if article.user %></td>
     <td><%= link_to "Show", article_path(article) %></td>
-    <% if isLoggedIn? && article.user == current_user %>
+    <% if isLoggedIn? && (article.user == current_user || current_user.admin?) %>
     <td><%= link_to "Edit", edit_article_path(article) %></td>
     <td><%= link_to "Delete", article_path(article), method: :delete , data:{confirm: "Are you pretty sure?"}%></td>
     <% end %>
@@ -30,3 +30,6 @@ Articles listing page
 </tbody>
 </table>
 <%= link_to "Create new article", new_article_path%>
+<% if isLoggedIn? %>
+  <%= link_to 'Log out ', logout_path, method: :delete %>
+<% end %>

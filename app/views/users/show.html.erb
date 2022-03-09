@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%= link_to 'List users', users_path %>
 <%= gravatar_for @user %>
 <p>
   <strong>Name:</strong>
@@ -11,5 +11,8 @@
   <%= @user.email %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<% if @user == current_user %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Delete', user_path(@user), method: :delete %> |
+<% end %>
 <%= link_to 'Log out ', logout_path, method: :delete %>

@@ -2,8 +2,11 @@
 <p><strong> TItle: </strong><%= @article.title %></p>
 <p>by <%= @article.user.name if @article.user  %></p>
 <p><strong> Description: </strong><%= @article.description %></p>
-<% if isLoggedIn? && @article.user == current_user %>
+<% if isLoggedIn? && (@article.user == current_user || current_user.admin?)  %>
   <td><%= link_to "Edit", edit_article_path(@article) %></td>
   <td><%= link_to "Delete", article_path(@article), method: :delete, data:{confirm: "Are you pretty sure?"} %></td>
 <% end %>
 <td><%= link_to "Return to article list", articles_path %></td>
+<% if isLoggedIn? %>
+<%= link_to 'Log out ', logout_path, method: :delete %>
+<% end%>
