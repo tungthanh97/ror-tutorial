@@ -1,6 +1,9 @@
 <div>
 Articles listing page
 </div>
+<div class="flickr_pagination">
+    <%= will_paginate @posts, :container => false %>
+</div>
 
 <table>
 <thead>
